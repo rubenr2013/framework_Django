@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Por qué Django?</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .encabezado {
+            background: linear-gradient(135deg, #0c4128, #1a5f3f);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .contenido-encabezado {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2rem;
+        }
+        
+        .contenedor-logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .logo img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 8px;
+        }
+        
+        .texto-logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .navegacion ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .navegacion a {
+            color: white;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .navegacion a:hover {
+            background-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+        
+        .seccion {
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .seccion-definicion {
+            background: linear-gradient(135deg, #f0f8ff, #e6f3ff);
+        }
+        
+        .seccion-caracteristicas {
+            background: linear-gradient(135deg, #f0fff0, #e6ffe6);
+        }
+        
+        .seccion-pros-contras {
+            background: linear-gradient(135deg, #fff8f0, #ffefe6);
+        }
+        
+        .seccion-empresas {
+            background: linear-gradient(135deg, #f8f0ff, #f0e6ff);
+            min-height: 100vh;
+            padding: 4rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .titulo-seccion {
+            color: #0c4128;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+            text-align: center;
+            font-weight: 700;
+        }
+        
+        .contenido-principal {
+            max-width: 900px;
+            text-align: left;
+        }
+        
+        .texto-introductorio {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .cuadricula-caracteristicas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .tarjeta-caracteristica {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .tarjeta-caracteristica:hover {
+            transform: translateY(-5px);
+        }
+        
+        .tarjeta-caracteristica h3 {
+            color: #0c4128;
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+        
+        .imagen-ejemplo {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border: 2px solid #999;
+        }
+        
+        .ejemplo-codigo {
+            background: #2d3748;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+            border-left: 4px solid #0c4128;
+        }
+        
+        .contenedor-pros-contras {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .pros, .contras {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .pros h3 {
+            color: #28a745;
+            margin-bottom: 1rem;
+        }
+        
+        .contras h3 {
+            color: #dc3545;
+            margin-bottom: 1rem;
+        }
+        
+        .cuadricula-empresas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .tarjeta-empresa {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .tarjeta-empresa:hover {
+            transform: translateY(-5px);
+        }
+        
+        .logo-empresa {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .logo-empresa img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .destacado {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            border-left: 4px solid #0c4128;
+        }
+        
+        @media (max-width: 768px) {
+            .contenido-encabezado {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .navegacion ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .contenedor-pros-contras {
+                grid-template-columns: 1fr;
+            }
+            
+            .titulo-seccion {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="encabezado">
+        <div class="contenido-encabezado">
+            <div class="contenedor-logo">
+                <div class="logo">
+                    <img src="https://w7.pngwing.com/pngs/10/113/png-transparent-django-web-development-web-framework-python-software-framework-django-text-trademark-logo-thumbnail.png" alt="Logo de Django">
+                </div>
+                <div class="texto-logo">Django</div>
+            </div>
+            <nav class="navegacion">
+                <ul>
+                    <li><a href="#inicio">Definición</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                    <li><a href="#estructura">Estructura de Django</a></li>
+                    <li><a href="#pros-contras">Ventajas/ Desventajas</a></li>
+                    <li><a href="#empresas">Empresas que lo usan</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section id="inicio" class="seccion seccion-definicion">
+        <div class="contenido-principal">
+            <h2 class="titulo-seccion">¿Qué es Django?</h2>
+            <p class="texto-introductorio">"El framework web para perfeccionistas con fechas límite"</p>
+            
+            <img class="imagen-ejemplo" src="https://1000marcas.net/wp-content/uploads/2021/06/Django-Logo.png" alt="Logo de Django y conceptos básicos">
+            
+            <p>Django es mucho más que un simple framework web. Es tu mejor aliado cuando necesitas crear aplicaciones web robustas, seguras y escalables usando Python. Imagínate tener un asistente que ya ha resuelto todos los problemas comunes del desarrollo web y te permite concentrarte en lo que realmente importa: construir algo increíble.</p>
+            
+            <p>Creado en 2005 por Adrian Holovaty y Simon Willison en el Lawrence Journal-World, Django nació de la necesidad real de desarrollar rápidamente sitios web de noticias. Su filosofía es simple pero poderosa: "No te repitas" (DRY - Don't Repeat Yourself) y "Convención sobre configuración".</p>
+            
+            <div class="destacado">
+                <strong>¿Por qué Django es especial?</strong><br>
+                Django no es solo código, es una filosofía de desarrollo que prioriza la productividad, la seguridad y la escalabilidad. Te permite crear desde un blog personal hasta aplicaciones que manejan millones de usuarios, como Instagram o Pinterest.
+            </div>
+        </div>
+    </section>
+    <section id="estructura" class="seccion seccion-definicion">
+    <div class="contenido-principal">
+        <h2 class="titulo-seccion">Estructura de un Proyecto Django</h2>
+        <p class="texto-introductorio">Entender la arquitectura de Django es clave para dominar el desarrollo web moderno</p>
+
+        <div class="cuadricula-caracteristicas">
+            <div class="tarjeta-caracteristica">
+                <h3>🗃️ Models (Modelos)</h3>
+                <p>Son el corazón de tu aplicación. Definen la estructura de tus datos y cómo interactúan entre sí. Cada modelo representa una tabla en la base de datos con validaciones, relaciones y métodos personalizados.</p>
+            </div>
+            <div class="tarjeta-caracteristica">
+                <h3>🎨 Templates (Plantillas)</h3>
+                <p>Son la cara visible de tu aplicación. Aquí vive el HTML, CSS y JavaScript. Puedes insertar datos dinámicos, hacer loops, condiciones y reutilizar componentes.</p>
+            </div>
+            <div class="tarjeta-caracteristica">
+                <h3>⚙️ Views (Vistas)</h3>
+                <p>Procesan las peticiones del usuario, interactúan con los modelos, aplican lógica y retornan respuestas renderizadas con templates. Es la lógica de tu aplicación.</p>
+            </div>
+            <div class="tarjeta-caracteristica">
+                <h3>🛣️ URLs (Enrutamiento)</h3>
+                <p>Conectan las URLs que escriben los usuarios con las vistas correspondientes. Django permite crear URLs limpias y fáciles de recordar.</p>
+            </div>
+            <div class="tarjeta-caracteristica">
+                <h3>📦 Apps (Aplicaciones)</h3>
+                <p>Cada funcionalidad se puede agrupar en una app. Son independientes y reutilizables. Por ejemplo, puedes tener una app de blog, otra de usuarios, etc.</p>
+            </div>
+            <div class="tarjeta-caracteristica">
+                <h3>🔧 Settings (Configuración)</h3>
+                <p>Control central del proyecto: base de datos, apps instaladas, archivos estáticos, seguridad y más. Puedes tener diferentes configuraciones por entorno.</p>
+            </div>
+        </div>
+
+        <div class="destacado">
+            <strong>¿Cómo trabajan juntos?</strong><br>
+            Imagina que un usuario visita tu sitio:<br>
+            1 El sistema de URLs encuentra la vista correcta.<br>
+            2 La vista consulta los modelos.<br>
+            3 Los modelos interactúan con la base de datos.<br>
+            4 La vista pasa los datos al template.<br>
+            5 El template genera el HTML que ve el usuario. ¡Todo esto en milisegundos!
+        </div>
+
+        <pre class="ejemplo-codigo">
+# Estructura básica de un proyecto Django
+mi_proyecto/
+├── manage.py
+├── mi_proyecto/
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── mi_app/
+│   ├── models.py
+│   ├── views.py
+│   ├── urls.py
+│   ├── templates/
+│   │   └── mi_app/
+│   │       └── index.html
+│   ├── static/
+│   │   └── mi_app/
+│   │       └── style.css
+│   └── migrations/
+        </pre>
+
+    </div>
+</section>
+    
+    <section id="caracteristicas" class="seccion seccion-caracteristicas">
+        <div class="contenido-principal">
+            <h2 class="titulo-seccion">Características que te van a encantar</h2>
+            <p class="texto-introductorio">Django viene con todo lo que necesitas para crear aplicaciones web modernas</p>
+            
+            <div class="cuadricula-caracteristicas">
+                <div class="tarjeta-caracteristica">
+                    <h3>🔐 Autenticación y Autorización</h3>
+                    <p>¿Necesitas usuarios, permisos y grupos? Django ya lo tiene resuelto. Sistema completo de autenticación que funciona desde el minuto uno, con hash de contraseñas, sesiones seguras y control de acceso granular.</p>
+                </div>
+                
+                <div class="tarjeta-caracteristica">
+                    <h3>🗄️ ORM Poderoso</h3>
+                    <p>Olvídate de escribir SQL manualmente. El ORM de Django traduce tus modelos Python a consultas de base de datos eficientes. Soporta PostgreSQL, MySQL, SQLite y Oracle sin cambiar una línea de código.</p>
+                </div>
+                
+                <div class="tarjeta-caracteristica">
+                    <h3>🔧 Panel de Administración</h3>
+                    <p>¿Necesitas un panel administrativo? Django lo genera automáticamente. Es como tener un CMS personalizado para tu aplicación sin esfuerzo extra. Perfecto para que los clientes gestionen contenido.</p>
+                </div>
+                
+                <div class="tarjeta-caracteristica">
+                    <h3>🛡️ Seguridad Integrada</h3>
+                    <p>Protección contra CSRF, XSS, SQL injection y muchas otras vulnerabilidades. Django cuida tu espalda con medidas de seguridad que se activan por defecto.</p>
+                </div>
+                
+                <div class="tarjeta-caracteristica">
+                    <h3>🌍 Internacionalización</h3>
+                    <p>¿Tu aplicación necesita varios idiomas? Django maneja traducciones, formatos de fecha, números y zonas horarias de manera automática. Piensa global, desarrolla local.</p>
+                </div>
+                
+                <div class="tarjeta-caracteristica">
+                    <h3>📈 Escalabilidad</h3>
+                    <p>Desde un proyecto personal hasta aplicaciones que manejan millones de usuarios. Django escala contigo, con herramientas para cache, optimización de consultas y distribución de carga.</p>
+                </div>
+            </div>
+            
+            <img class="imagen-ejemplo" src="https://espifreelancer.com/images/Django_mtv.webp" alt="Diagrama de arquitectura MVC de Django">
+        </div>
+    </section>
+    
+    <section id="pros-contras" class="seccion seccion-pros-contras">
+        <div class="contenido-principal">
+            <h2 class="titulo-seccion">La verdad sobre Django: Ventajas y Desventajas</h2>
+            <p class="texto-introductorio">Como todo en la vida, Django tiene sus fortalezas y sus puntos débiles. Aquí te contamos la verdad completa.</p>
+            
+            <div class="contenedor-pros-contras">
+                <div class="pros">
+                    <h3>✅ Ventajas que lo hacen brillar</h3>
+                    <ul>
+                        <li><strong>Desarrollo rápido:</strong> Creas prototipos funcionales en horas, no días. Perfecto para startups y proyectos con plazos ajustados.</li>
+                        <li><strong>Comunidad increíble:</strong> Millones de desarrolladores, documentación excelente y paquetes para casi cualquier necesidad.</li>
+                        <li><strong>Seguridad por defecto:</strong> No necesitas ser un experto en seguridad para crear aplicaciones seguras.</li>
+                        <li><strong>Escalabilidad probada:</strong> Si funciona para Instagram y Pinterest, funcionará para tu proyecto.</li>
+                        <li><strong>Batteries included:</strong> Viene con todo lo necesario. No pierdes tiempo eligiendo entre miles de librerías.</li>
+                        <li><strong>Mantenimiento fácil:</strong> Código limpio y organizado que cualquier desarrollador puede entender.</li>
+                    </ul>
+                </div>
+                
+                <div class="contras">
+                    <h3>❌ Desventajas a considerar</h3>
+                    <ul>
+                        <li><strong>Curva de aprendizaje:</strong> Si eres nuevo en programación, puede ser abrumador al principio.</li>
+                        <li><strong>Overhead para proyectos simples:</strong> Para un sitio web básico, puede ser excesivo.</li>
+                        <li><strong>Menos flexibilidad:</strong> Su estructura "opinada" puede limitar enfoques muy específicos.</li>
+                        <li><strong>Consumo de recursos:</strong> Puede ser más pesado que frameworks minimalistas.</li>
+                        <li><strong>Acoplamiento estrecho:</strong> Cambiar componentes del ORM puede ser complicado.</li>
+                        <li><strong>Versionado:</strong> Las actualizaciones mayores pueden requerir cambios significativos.</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="destacado">
+                <strong>Nuestra recomendación:</strong><br>
+                Django es ideal si valoras la productividad, la seguridad y tienes plazos ajustados. Es perfecto para aplicaciones web tradicionales, APIs REST, y proyectos donde la velocidad de desarrollo es crucial. Evítalo si necesitas máxima flexibilidad o estás construyendo algo muy específico que no se adapte a sus convenciones.
+            </div>
+        </div>
+    </section>
+    
+    <section id="empresas" class="seccion seccion-empresas">
+        <div class="contenido-principal">
+            <h2 class="titulo-seccion">Gigantes que confían en Django</h2>
+            <p class="texto-introductorio">Estas empresas y aplicaciones que usas todos los días están construidas con Django</p>
+            
+            <div class="cuadricula-empresas">
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/2048px-Instagram_logo_2016.svg.png" alt="Instagram">
+                    </div>
+                    <h3>Instagram</h3>
+                    <p>La red social de fotografía más popular del mundo maneja más de 1 billón de fotos y 500 millones de usuarios activos diarios. Django les permite escalar masivamente manteniendo la estabilidad.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnRwxyIR3El4L0UV-bmUOweHbVCF_ub-Ewew&s" alt="Pinterest">
+                    </div>
+                    
+                    <p>Millones de "pins" diarios en una plataforma que conecta ideas y productos. Django maneja su arquitectura compleja de recomendaciones y gestión de contenido visual.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/2048px-Spotify_logo_without_text.svg.png" alt="Spotify">
+                    </div>
+                    
+                    <p>Partes críticas de su plataforma de música utilizan Django para manejar recomendaciones, análisis de datos y gestión de usuarios premium.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://cdn.worldvectorlogo.com/logos/dropbox-1.svg" alt="Dropbox">                        
+                    </div>
+                    <p>El servicio de almacenamiento en la nube utiliza Django para su interfaz web y APIs que sincronizan archivos de millones de usuarios globalmente.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Firefox_logo%2C_2019.svg/2048px-Firefox_logo%2C_2019.svg.png" alt="Mozilla">
+                    </div>
+                    
+                    <p>Muchos de sus sitios web y servicios internos, incluyendo partes de Firefox, están construidos con Django por su confiabilidad y seguridad.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://img.favpng.com/15/13/22/logo-brand-washington-d-c-the-washington-post-font-png-favpng-QQ0JpAifpXVEyhbLXNRVXBGme.jpg" alt="The Washington Post">
+                    </div>
+                    <h3>The Washington Post</h3>
+                    <p>Uno de los periódicos más importantes de EE.UU. usa Django para su CMS y plataforma digital, manejando millones de lectores diarios.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://images.seeklogo.com/logo-png/36/1/eventbrite-logo-png_seeklogo-363122.png" alt="Eventbrite">
+                    </div>
+                    <h3>Eventbrite</h3>
+                    <p>La plataforma de gestión de eventos procesa millones de entradas y pagos usando Django para manejar transacciones complejas de forma segura.</p>
+                </div>
+                
+                <div class="tarjeta-empresa">
+                    <div class="logo-empresa">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8xfNmNkgTiYeVZU8VdB8RTtB4gAmqRWsw2w&s" alt="National Geographic">
+                    </div>
+                    <h3>National Geographic</h3>
+                    <p>Su sitio web y plataforma de contenido educativo utiliza Django para gestionar artículos, videos y recursos multimedia de forma eficiente.</p>
+                </div>
+            </div>
+            
+            <div class="destacado">
+                <strong>¿Qué tienen en común todas estas empresas?</strong><br>
+                Todas necesitaban una solución confiable, escalable y segura para sus aplicaciones web críticas. Django les permitió concentrarse en su negocio principal mientras el framework se encargaba de la infraestructura técnica. Desde startups hasta corporaciones Fortune 500, Django demuestra que puede manejar cualquier escala de tráfico y complejidad.
+            </div>
+
+        </div>
+    </section>
+</body>
+</html>
