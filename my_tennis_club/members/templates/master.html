@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Club de Tenis</title>
+    <style>
+        /* Estilo general */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f5f5f5; /* Gris claro */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50; /* Azul grisáceo */
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #ecf0f1;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #1abc9c; /* Verde suave */
+        }
+
+        /* Sección principal */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background-color: #ecf0f1; /* Fondo claro */
+            border-top: 3px solid #1abc9c;
+        }
+
+        .hero h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #1abc9c; /* Verde suave */
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #16a085;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>My Club de Tenis</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Nosotros</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>Bienvenido a nuestro club</h2>
+        <p>Disfruta del mejor ambiente para practicar tenis, mejorar tu técnica y conocer nuevos amigos.</p>
+        <img src="https://media.istockphoto.com/id/1362488100/es/foto/pelota-de-tenis-tirada-en-la-cancha-concepto-de-estilo-de-vida-saludable.jpg?s=612x612&w=0&k=20&c=x5xleimEqu22hoCAPKvd1dJrSnmnTRZKNbFeNaDMQQ4=" alt="My Tennis Club Logo">
+        <br>
+        <a href="#" class="btn">Únete Ahora</a>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 My Club de Tenis | Todos los derechos reservados</p>
+    </footer>
+
+    {% block content %}
+{% endblock %}
+</body>
+</html>
